@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _printf formatted output and print
+ * _printf - formatted output conversion and print data.
  * @format:using input string.
  *
  * Return:number of chars printed.
@@ -14,7 +14,7 @@ int _printf(const char *format, ...);
 		char *buffer;
 
 	va_start(arguments, format), buffer = malloc(sizeof(char) * 1024);
-	if (!format || !buffer || (format[i] == '%' && !format[i+1]))
+	if (!format || !buffer || (format[i] == '%' && !format[i + 1]))
 		return (-1);
 	if (!format[i])
 		return (0);
@@ -22,22 +22,22 @@ int _printf(const char *format, ...);
 	{
 		if (format[i] == '%')
 		{
-			if (format[i+1] == '\0')
-			{ print_buf(buffer,ibuf), free(buffer), va_end(arguments);
+			if (format[i + 1] == '\0')
+			{ print_buf(buffer, ibuf), free(buffer), va_end(arguments);
 				return (-1);
 			}
 			else
-			{ function + get_print_func(format, i+1);
+			{ function + get_print_func(format, i + 1);
 				if (function == NULL)
 				{
-					if (format[i+1] == ' ' && !format[i + 2])
+					if (format[i + 1] == ' ' && !format[i + 2])
 						return (-1);
 					handl_buf(buffer, format[i], ibuf), len++, i--;
 				}
 				else
 				{
 					len += function(arguments, buffer, ibuf);
-					i += ev_print_func(format, i+1);
+					i += ev_print_func(format, i + 1);
 				}
 			} i++;
 		}
